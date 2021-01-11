@@ -1,0 +1,40 @@
+plugins {
+    id 'application'
+    id "com.avast.gradle.docker-compose" version "0.14.0"
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    implementation 'com.google.guava:guava:29.0-jre'
+}
+
+application {
+    mainClass = 'io.github.davidbakereffendi.example.App'
+}
+
+test {
+    useJUnitPlatform()
+    exclude "**/*IntTest*"
+    testLogging { events "FAILED", "SKIPPED" }
+}
+
+task intTest(type: Test) {
+    useJUnitPlatform()
+    description = "Execute integration tests."
+    group = "verification"
+    include "**/**IntTest**"
+    testLogging { events "FAILED", "SKIPPED" }
+    doFirst { dockerCompose.exposeAsEnvironment(intTest) }
+}
+
+dockerCompose {
+    tigerGraphSetup {
+        useComposeFiles = ["src/test/resources/docker/tigergraph.yml"]
+        isRequiredBy(project.tasks.intTest)
+    }
+}
