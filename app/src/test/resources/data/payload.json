@@ -1,0 +1,39 @@
+{
+  "vertices": {
+    "person": {
+      "Dave": {
+        "name": {
+          "value": "Dave"
+        },
+        "age": {
+          "value": 23
+        },
+        "gender": {
+          "value": "Male"
+        }
+      },
+      "Fred": {
+        "name": {
+          "value": "Fred"
+        },
+        "age": {
+          "value": 63
+        },
+        "gender": {
+          "value": "Male"
+        }
+      }
+    }
+  },
+  "edges": {
+    "person": {
+      "Dave": {
+        "friendship": {
+          "person": {
+            "Fred": {}
+          }
+        }
+      }
+    }
+  }
+}

@@ -27,7 +27,7 @@ task intTest(type: Test) {
     useJUnitPlatform()
     description = "Execute integration tests."
     group = "verification"
-    include "**/**IntTest**"
+    include "**/*IntTest*"
     testLogging { events "FAILED", "SKIPPED" }
     doFirst { dockerCompose.exposeAsEnvironment(intTest) }
 }

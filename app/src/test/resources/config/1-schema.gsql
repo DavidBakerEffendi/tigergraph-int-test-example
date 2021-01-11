@@ -1,0 +1,14 @@
+DROP ALL
+
+CREATE VERTEX person (
+    PRIMARY_ID name STRING,
+    name STRING, age INT,
+    gender STRING
+)
+
+CREATE UNDIRECTED EDGE friendship (
+    FROM person,
+    TO person
+)
+
+CREATE GRAPH social (person, friendship)

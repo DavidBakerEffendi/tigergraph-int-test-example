@@ -1,0 +1,15 @@
+USE GRAPH social
+
+CREATE QUERY hello(VERTEX<person> p) FOR GRAPH social {
+  Start = {p};
+  Result = SELECT tgt
+           FROM Start:s-(friendship:e) ->person:tgt;
+  PRINT Result;
+}
+
+CREATE QUERY status() FOR GRAPH social {
+  INT status = 0;
+  PRINT status;
+}
+
+INSTALL QUERY ALL
